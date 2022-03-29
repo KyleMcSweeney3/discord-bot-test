@@ -7,8 +7,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 
 client.commands = new Collection();
 
+// Takes in all event listener files and adds them to our client
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
-
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
@@ -18,17 +18,14 @@ for (const file of eventFiles) {
 	}
 }
 
+// Takes in all our command .js files and adds them to the bot
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
-
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => {
-    console.log('Beep Boop, Bot is ready!')
-});
-
+// Listens for a user interaction and responds with the command logic.
 client.on('interactionCreate', async interaction => {
     if(!interaction.isCommand()) return;
 
