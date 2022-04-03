@@ -3,7 +3,7 @@ const { token } = require('../config.json')
 const fs = require('node:fs');
 
 // Intents.FLAGS.GUILDS is necessary for the client to work properly
-const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 
 client.commands = new Collection();
 
@@ -23,7 +23,7 @@ const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWi
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.data.name, command);
-}
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
 // Listens for a user interaction and responds with the command logic.
 client.on('interactionCreate', async interaction => {
