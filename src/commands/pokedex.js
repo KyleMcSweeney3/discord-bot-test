@@ -14,14 +14,13 @@ module.exports = {
         
         async execute(interaction) {
             const pokemonName = interaction.options.get('pokemon')
-            
 
             fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.value.toLowerCase()}`)
                 .then(response => response.json())
                 .then(data => {
 
                     interaction.reply({
-                        content: `${pokemonName.value.capitalize()} #${String(data.id).padStart(3, '0')}\nHeight: ${toFeet(data.height*10)}\nWeight: ${data.weight} lbs\n\nBase Stats:\n${data.stats[0].stat.name.capitalize()}: ${data.stats[0].base_stat}\n${data.stats[1].stat.name.capitalize()}: ${data.stats[1].base_stat}\n${data.stats[2].stat.name.capitalize()}: ${data.stats[2].base_stat}\n${data.stats[3].stat.name.capitalize()}: ${data.stats[3].base_stat}\n${data.stats[4].stat.name.capitalize()}: ${data.stats[4].base_stat}\n${data.stats[5].stat.name.capitalize()}: ${data.stats[5].base_stat}\n${data.sprites.front_default}`
+                        content: `${pokemonName.value.capitalize()} #${String(data.id).padStart(3, '0')}\n\nHeight: ${toFeet(data.height*10)}\nWeight: ${data.weight} lbs\nType[s]: ${data.types[0].type.name.capitalize()}${(data.types[1]) ? ", " + data.types[1].type.name.capitalize() : ""}\nAbility: ${data.abilities[0].ability.name.capitalize()}\n\nBase Stats:\n${data.stats[0].stat.name.capitalize()}: ${data.stats[0].base_stat}\n${data.stats[1].stat.name.capitalize()}: ${data.stats[1].base_stat}\n${data.stats[2].stat.name.capitalize()}: ${data.stats[2].base_stat}\n${data.stats[3].stat.name.capitalize()}: ${data.stats[3].base_stat}\n${data.stats[4].stat.name.capitalize()}: ${data.stats[4].base_stat}\n${data.stats[5].stat.name.capitalize()}: ${data.stats[5].base_stat}\n${data.sprites.front_default}`
                     })
                 })
                 .catch((err) => console.error(err));
