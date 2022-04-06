@@ -21,7 +21,7 @@ module.exports = {
                 .then(data => {
 					
                     interaction.reply({
-						content: `\`\`\`Effect: ${data.effect_entries[0].effect.replace(/\n/g, '')}\nCost: ${data.cost}\`\`\`Sprite: ${data.sprites.default}`
+						content: `\`\`\`Effect: ${data.effect_entries[0].effect.replace(/\n/g, '')}\nCost: ${data.cost}\`\`\``
                     })
                 })
                 .catch((err) => {

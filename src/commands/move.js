@@ -19,9 +19,8 @@ module.exports = {
             fetch(`${pokeEndpoint}/v2/move/${moveName.value.toLowerCase().replace(/ /g, '-')}`)
                 .then(response => response.json())
                 .then(data => {
-					var chars = {'-i':' 1','-ii':' 2','-iii':' 3','-iv': ' 4', '-v':' 5', '-vi': ' 6', '-vii': ' 7', '-viii': ' 8', '-iv': ' 9', '-x': ' 10'}
                     interaction.reply({
-						content: `\`\`\`Name: ${data.name.capitalize()}\nType: ${data.type.name.capitalize()}\nAccuracy: ${(data.accuracy == null) ? 'This attack never misses' : data.accuracy}\nPower: ${data.power}\nPP: ${data.pp}\nDamage type: ${data.damage_class.name.capitalize()}\nIntroduced in ${data.generation.name.replace(/-i|i{2}|i{3}|-iv|-vi|-vii|-viii|-iv|-x/g, m => chars[m])}\nEffect: ${data.effect_entries[0].effect}\`\`\`\n\n`
+						content: `\`\`\`Name: ${data.name.capitalize().replace(/-/g, ' ')}\nType: ${data.type.name.capitalize()}\nAccuracy: ${(data.accuracy == null) ? 'This attack never misses' : data.accuracy}\nPower: ${data.power}\nPP: ${data.pp}\nDamage type: ${data.damage_class.name.capitalize()}\nIntroduced in ${data.generation.name.replace(/-/g, ' ')}\nEffect: ${data.effect_entries[0].effect}\n${(data.effect_chance !== null) ? 'Effect chance: ' + data.effect_chance : ''}\`\`\`\n\n`
                     })
                 })
                 .catch((err) => {
