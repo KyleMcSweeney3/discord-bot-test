@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Options } = require('discord.js');
 const { execute } = require('./ping');
 const fetch = require('node-fetch');
+const pokeEndpoint = 'https://pokeapi.co/api';
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,13 +16,16 @@ module.exports = {
         async execute(interaction) {
             const pokemonName = interaction.options.get('pokemon')
 
-            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.value.toLowerCase()}`)
+            fetch(`${pokeEndpoint}/v2/pokemon/${pokemonName.value.toLowerCase()}`)
                 .then(response => response.json())
                 .then(data => {
+                    const abilityDesc = fetch(data.abilities[0].ability.url).then(res => res.json()).then(desc => (desc.effect_entries[0].language.name == 'de') ? desc.effect_entries[1].effect : desc.effect_entries[0].effect).then(description => { 
+                      
+                      interaction.reply({
+                        content: `${pokemonName.value.capitalize()} #${String(data.id).padStart(3, '0')}\n\nHeight: ${toFeet(data.height*10)}\nWeight: ${data.weight} lbs\nType[s]: ${data.types[0].type.name.capitalize()}${(data.types[1]) ? ", " + data.types[1].type.name.capitalize() : ""}\nAbility: ${data.abilities[0].ability.name.capitalize()}\nAbility Description: ${String(description).split('. ')[0]}\n\nBase Stats:\n${data.stats[0].stat.name.capitalize()}: ${data.stats[0].base_stat}\n${data.stats[1].stat.name.capitalize()}: ${data.stats[1].base_stat}\n${data.stats[2].stat.name.capitalize()}: ${data.stats[2].base_stat}\n${data.stats[3].stat.name.capitalize()}: ${data.stats[3].base_stat}\n${data.stats[4].stat.name.capitalize()}: ${data.stats[4].base_stat}\n${data.stats[5].stat.name.capitalize()}: ${data.stats[5].base_stat}\n\nSprite: ${data.sprites.front_default}`
+                      })
+                     });
 
-                    interaction.reply({
-                        content: `${pokemonName.value.capitalize()} #${String(data.id).padStart(3, '0')}\n\nHeight: ${toFeet(data.height*10)}\nWeight: ${data.weight} lbs\nType[s]: ${data.types[0].type.name.capitalize()}${(data.types[1]) ? ", " + data.types[1].type.name.capitalize() : ""}\nAbility: ${data.abilities[0].ability.name.capitalize()}\n\nBase Stats:\n${data.stats[0].stat.name.capitalize()}: ${data.stats[0].base_stat}\n${data.stats[1].stat.name.capitalize()}: ${data.stats[1].base_stat}\n${data.stats[2].stat.name.capitalize()}: ${data.stats[2].base_stat}\n${data.stats[3].stat.name.capitalize()}: ${data.stats[3].base_stat}\n${data.stats[4].stat.name.capitalize()}: ${data.stats[4].base_stat}\n${data.stats[5].stat.name.capitalize()}: ${data.stats[5].base_stat}\n${data.sprites.front_default}`
-                    })
                 })
                 .catch((err) => console.error(err));
         }
