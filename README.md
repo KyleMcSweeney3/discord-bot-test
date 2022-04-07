@@ -13,5 +13,16 @@ The commands implmented in this bot are used by prefixing each message with a '/
 
 ### Commands
 1. /help -> Displays each of the available commands, and example usages.
-2. /pokedex <POKEMON> -> Displays high level pokedex data on the requested pokemon. Includes sprite image of the pokemon.
+2. /pokedex `pokemon` -> Displays high level pokedex data on the requested pokemon. Includes sprite image of the pokemon.
+3. /move `move` -> Provides information on the requested move
+4. /item `item` -> Provides detail on the requested item
+5. /randompokemon -> Provides high level pokedex data on a random pokemon
+6. /shinylookup `pokemon` -> Displays a front and back view of the requested pokemon in its shiny form.
+
+## Dependencies
+
+## Authors
+Kyle McSweeney - Sole Developer - [Github](https://github.com/KyleMcSweeney3)
+
+Pokémon © 2002-2022 Pokémon. © 1995-2022 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo. No copyright or trademark infringement is intended.
 
