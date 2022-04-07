@@ -3,6 +3,8 @@
 The Pokedex discord bot utilises the PokeAPI to pull and display information about the many entities within the Pokemon universe. This includes pokemon, abilites, moves, items, etc.
 The various commands allows users to lookup these entities and displays all the relevant information about each of them.
 
+Developed using [Discord.js](https://discord.js.org/#/)
+
 ## Features and Commands
 The commands implmented in this bot are used by prefixing each message with a '/' and invoking the relevant command.
 
@@ -21,8 +23,6 @@ The commands implmented in this bot are used by prefixing each message with a '/
 
 ## Dependencies
 [PokeAPI](https://pokeapi.co/)
-
-[Discord.js](https://discord.js.org/#/)
 
 ## Authors
 Kyle McSweeney - Sole Developer - [Github](https://github.com/KyleMcSweeney3)
