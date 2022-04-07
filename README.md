@@ -21,6 +21,7 @@ The commands implmented in this bot are used by prefixing each message with a '/
 
 ## Dependencies
 [PokeAPI](https://pokeapi.co/)
+
 [Discord.js](https://discord.js.org/#/)
 
 ## Authors
