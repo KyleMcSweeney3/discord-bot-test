@@ -20,9 +20,12 @@ The commands implmented in this bot are used by prefixing each message with a '/
 6. /shinylookup `pokemon` -> Displays a front and back view of the requested pokemon in its shiny form.
 
 ## Dependencies
+[PokeAPI](https://pokeapi.co/)
+[Discord.js](https://discord.js.org/#/)
 
 ## Authors
 Kyle McSweeney - Sole Developer - [Github](https://github.com/KyleMcSweeney3)
+
 
 Pokémon © 2002-2022 Pokémon. © 1995-2022 Nintendo/Creatures Inc./GAME FREAK inc. TM, ® and Pokémon character names are trademarks of Nintendo. No copyright or trademark infringement is intended.
 
