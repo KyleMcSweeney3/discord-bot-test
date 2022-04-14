@@ -3,7 +3,7 @@
 The Pokedex discord bot utilises the PokeAPI to pull and display information about the many entities within the Pokemon universe. This includes pokemon, abilites, moves, items, etc.
 The various commands allows users to lookup these entities and displays all the relevant information about each of them.
 
-Developed using [Discord.js](https://discord.js.org/#/)
+Developed using [Discord.js](https://discord.js.org/#/). A powerful node module that allows you to interact with the Discord API very simply.
 
 ## Features and Commands
 The commands implmented in this bot are used by prefixing each message with a '/' and invoking the relevant command.
@@ -20,9 +20,14 @@ The commands implmented in this bot are used by prefixing each message with a '/
 4. /item `item` -> Provides detail on the requested item
 5. /randompokemon -> Provides high level pokedex data on a random pokemon
 6. /shinylookup `pokemon` -> Displays a front and back view of the requested pokemon in its shiny form.
+7. /shinyhunt `pokemon` -> Rolls at default shiny odds for the requested pokemon. Displays shiny form if successful.
 
 ## Dependencies
 [PokeAPI](https://pokeapi.co/)
+
+## Extendability
+1. Currently, the PokeAPI has a limit on the number of requests it can receive under its fair use policy. Implementing caching of the data to minimise these requests made to the PokeAPI. Could potentially store all this data on our own server.
+2. Adding more interactive commands, i.e. pokemon quiz, pokemon battler, party, shiny game.
 
 ## Authors
 Kyle McSweeney - Sole Developer - [Github](https://github.com/KyleMcSweeney3)

@@ -6,7 +6,7 @@ const pokeEndpoint = 'https://pokeapi.co/api';
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('pokedex')
+		    .setName('pokedex')
         .setDescription('Replies with details about the request Pokemon')
         .addStringOption(option =>
             option.setName('pokemon')
