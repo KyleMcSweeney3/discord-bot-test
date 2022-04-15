@@ -24,7 +24,7 @@ The commands implmented in this bot are used by prefixing each message with a '/
 7. /shinyhunt `pokemon` -> Rolls at default shiny odds for the requested pokemon. Displays shiny form if successful.
 
 ### Currency Commands
-**All currency commands must be prefixed with a '!' rather than a '/'.**
+***All currency commands must be prefixed with a '!' rather than a '/'.***
 1. !balance -> Displays your current PokeBUX balance.
 2. !shop -> Shows all available items in the PokeBUX Shop
 3. !inventory -> Shows all your current items in your inventory
