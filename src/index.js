@@ -3,6 +3,7 @@ const { token } = require('../config.json')
 const Sequelize = require('sequelize');
 const fs = require('node:fs');
 const { Users, CurrencyShop } = require('./dbObjects.js');
+const { Op } = require('sequelize');
 
 // Intents.FLAGS.GUILDS is necessary for the client to work properly
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
@@ -84,22 +85,55 @@ client.on('messageCreate', async message => {
         const transferAmount = args[0]
         const transferTarget = args[1].replace(/[<!@>]/g, '');
         
-        if (transferAmount > currentAmount) return message.reply(`Sorry ${message.member.user}, you only have ${currentAmount} PokeBux.`);
+        // Error checking on user input
+        if (transferAmount > currentAmount) return message.reply(`Sorry ${message.member.user}, you only have ${currentAmount} PokeBux to trade.`);
         if (transferAmount <= 0) return message.reply(`Please enter an amount greater than zero, ${message.member.user}.`);
+        if (!Number.isInteger(transferAmount)) return message.reply(`Please enter a valid number to trade, ${message.member.user}`);
         
         currency.add(message.member.user.id, -transferAmount);
         currency.add(transferTarget, transferAmount);
 
         return message.reply(`Successfully transferred ${transferAmount} PokeBux. Your current balance is ${currency.getBalance(message.member.user.id)}💰`);
     } else if (command === "inventory") {
-        const target = args[0].replace(/[<!@>]/g, '');
-        message.reply(`${client.users.cache.get(target)}`);
-        // const user = await Users.findOne({ where: { user_id: target } });
-        // const items = await user.getItems();
+        if(!args[0]) {
+            targetUser = message.member.user
+        } else {
+            targetUser = client.users.cache.get(args[0].replace(/[<!@>]/g, ''))
+        }
+        
+        const user = await Users.findOne({ where: { user_id: targetUser.id } });
+        const items = await user.getItems();
 
-        // if (!items.length) return message.reply(`${target.tag} has nothing!`);
+        if (!items.length) return message.reply(`${message.member.user} has nothing!`);
 
-	    // return message.reply(`${target.tag} currently has ${items.map(i => `${i.amount} ${i.item.name}`).join(', ')}`);
+	    return message.reply(`${message.member.user} currently has ${items.map(i => `${i.amount} ${i.item.name}`).join(', ')}`);
+    } else if (command === 'shop') {
+        const items = await CurrencyShop.findAll();
+        return message.reply(Formatters.codeBlock(items.map(i => `${i.name}: ${i.cost}💰`).join('\n')));
+    } else if (command === 'buy') {
+        const itemName = args[0]
+        const item = await CurrencyShop.findOne({ where: { name: { [Op.like]: itemName } } });
+    
+        if (!item) return message.reply(`That item doesn't exist.`);
+        if (item.cost > currency.getBalance(message.member.user.id)) {
+            return message.reply(`You currently have ${currency.getBalance(message.member.user.id)}, but the ${item.name} costs ${item.cost}!`);
+        }
+    
+        const user = await Users.findOne({ where: { user_id: message.member.user.id } });
+        currency.add(message.member.user.id, -item.cost);
+        await user.addItem(item);
+    
+        return message.reply(`You've bought: ${item.name}.`);
+    } else if (command === 'leaderboard') {
+        return message.reply(
+            Formatters.codeBlock(
+                currency.sort((a, b) => b.balance - a.balance)
+                    .filter(user => client.users.cache.has(user.user_id))
+                    .first(10)
+                    .map((user, position) => `(${position + 1}) -> ${(client.users.cache.get(user.user_id).tag)}: ${user.balance}💰`)
+                    .join('\n'),
+            ),
+        );
     }
 });
 

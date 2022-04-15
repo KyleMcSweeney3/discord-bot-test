@@ -12,6 +12,7 @@ The commands implmented in this bot are used by prefixing each message with a '/
 1. All information from Generation 1-9 is accessible via the lookup commands.
 2. Error Handling with user-friendly messaging
 3. Sprites for each pokemon. Access to shiny version sprites.
+4. PokeBUX currency system. Earn currency to buy items and trade amongst your friends!
 
 ### Commands
 1. /help -> Displays each of the available commands, and example usages.
@@ -21,6 +22,14 @@ The commands implmented in this bot are used by prefixing each message with a '/
 5. /randompokemon -> Provides high level pokedex data on a random pokemon
 6. /shinylookup `pokemon` -> Displays a front and back view of the requested pokemon in its shiny form.
 7. /shinyhunt `pokemon` -> Rolls at default shiny odds for the requested pokemon. Displays shiny form if successful.
+
+### Currency Commands
+**All currency commands must be prefixed with a '!' rather than a '/'.**
+1. !balance -> Displays your current PokeBUX balance.
+2. !shop -> Shows all available items in the PokeBUX Shop
+3. !inventory -> Shows all your current items in your inventory
+4. !buy `item` -> Purchase an item from the currency shop.
+5. !leaderboard -> Displays a leaderboard of players with the most PokeBUX.
 
 ## Dependencies
 [PokeAPI](https://pokeapi.co/)
