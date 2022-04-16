@@ -3,6 +3,8 @@
 The Pokedex discord bot utilises the PokeAPI to pull and display information about the many entities within the Pokemon universe. This includes pokemon, abilites, moves, items, etc.
 The various commands allows users to lookup these entities and displays all the relevant information about each of them.
 
+Also includes a PokeBUX currency system where you earn Pokebux to buy items and trade amongst your friends.
+
 Developed using [Discord.js](https://discord.js.org/#/). A powerful node module that allows you to interact with the Discord API very simply.
 
 ## Features and Commands
@@ -24,11 +26,11 @@ The commands implmented in this bot are used by prefixing each message with a '/
 7. /shinyhunt `pokemon` -> Rolls at default shiny odds for the requested pokemon. Displays shiny form if successful.
 
 ### Currency Commands
-***All currency commands must be prefixed with a '!' rather than a '/'.***
+***All currency commands must be prefixed with a '!' rather than a forward slash '/'.***
 1. !balance -> Displays your current PokeBUX balance.
 2. !shop -> Shows all available items in the PokeBUX Shop
 3. !inventory -> Shows all your current items in your inventory
-4. !buy `item` -> Purchase an item from the currency shop.
+4. !buy `item` -> Purchase an item from the PokeBUX currency shop.
 5. !leaderboard -> Displays a leaderboard of players with the most PokeBUX.
 
 ## Dependencies
