@@ -65,7 +65,7 @@ client.on('messageCreate', async message => {
 
     if (!message.content.startsWith(prefix)) {
         // Add 1 currency for each message sent in the chat
-        currency.add(message.author.id, 1);
+        currency.add(message.author.id, 10);
         return;
     }
     const commandBody = message.content.slice(prefix.length);

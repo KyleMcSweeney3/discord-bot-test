@@ -39,6 +39,7 @@ The commands implmented in this bot are used by prefixing each message with a '/
 ## Extendability
 1. Currently, the PokeAPI has a limit on the number of requests it can receive under its fair use policy. Implementing caching of the data to minimise these requests made to the PokeAPI. Could potentially store all this data on our own server.
 2. Adding more interactive commands, i.e. pokemon quiz, pokemon battler, party, shiny game.
+3. Improving the currency system to further build the economy and adding more uses for the currency itself.
 
 ## Authors
 Kyle McSweeney - Sole Developer - [Github](https://github.com/KyleMcSweeney3)
