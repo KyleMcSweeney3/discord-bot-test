@@ -36,6 +36,8 @@ The commands implmented in this bot are used by prefixing each message with a '/
 ## Dependencies
 [PokeAPI](https://pokeapi.co/)
 
+[Discord.js](https://discord.js.org/#/)
+
 ## Extendability
 1. Currently, the PokeAPI has a limit on the number of requests it can receive under its fair use policy. Implementing caching of the data to minimise these requests made to the PokeAPI. Could potentially store all this data on our own server.
 2. Adding more interactive commands, i.e. pokemon quiz, pokemon battler, party, shiny game.
